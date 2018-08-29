@@ -61,7 +61,6 @@ public class ProfileViewModel extends BaseViewModel {
             mAttendeeDetail.setValue(mAttendeeDetailRepo.getDao().getAll(true).getData().first());
             mAttendee.setValue(mAttendeeDetail.getValue().getResponse().first());
         }
-
     }
 
     @Override
@@ -74,7 +73,7 @@ public class ProfileViewModel extends BaseViewModel {
 
     public String getImageUrl() {
         // The URL will usually come from a model (i.e Profile)
-        return mAttendee.getValue().getMedia().first().getFiles().getDefault_date();
+        return mAttendee.getValue().getMedia().first().getFiles().getVariations().getOriginal();
     }
 
 

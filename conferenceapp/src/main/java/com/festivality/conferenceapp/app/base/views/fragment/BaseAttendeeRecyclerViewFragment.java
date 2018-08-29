@@ -20,6 +20,7 @@ import com.festivality.conferenceapp.app.base.adapter.BaseRecyclerViewModelAdapt
 import com.festivality.conferenceapp.app.base.interfaces.Scrollable;
 import com.festivality.conferenceapp.app.base.interfaces.TabBadgeListener;
 import com.festivality.conferenceapp.app.base.interfaces.UiRefreshable;
+import com.festivality.conferenceapp.data.source.Status;
 import com.festivality.conferenceapp.features.attendees.view.adapters.AttendeeRecycleViewAdapter;
 import com.festivality.conferenceapp.features.attendees.viewmodel.AttendeeViewModel;
 import com.festivality.conferenceapp.helper.ui.AlertUtils;
@@ -40,6 +41,7 @@ public abstract class BaseAttendeeRecyclerViewFragment<
     protected RecyclerView recyclerView;
     protected RelativeLayout emptyView;
     protected RelativeLayout dataView;
+    protected RelativeLayout progressView;
     protected TextView toolbar_title;
     protected boolean isRefreshing;
 
@@ -54,6 +56,7 @@ public abstract class BaseAttendeeRecyclerViewFragment<
         recyclerView = view.findViewById(R.id.recyclerView);
         emptyView = view.findViewById(R.id.emptyView);
         dataView = view.findViewById(R.id.dataView);
+        progressView = view.findViewById(R.id.progressView);
         DividerItemDecoration horizontalDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL);
         Drawable horizontalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.horizontal_divider);
@@ -63,10 +66,10 @@ public abstract class BaseAttendeeRecyclerViewFragment<
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         Log.i("Anil", "Title " + viewModel.getTitle());
-        showEmptyView();
+        //showEmptyView();
         refreshLayout.setColorSchemeResources(R.color.material_amber_700, R.color.material_blue_700,
                 R.color.material_purple_700, R.color.material_lime_700);
-        // refreshLayout.setOnRefreshListener(this::refresh);
+        //refreshLayout.setOnRefreshListener(this::refresh);
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -97,11 +100,9 @@ public abstract class BaseAttendeeRecyclerViewFragment<
     public void setLoading(boolean loading) {
         if (!loading) {
             doneRefresh();
-            //adapter.removeProgress();
+            progressView.setVisibility(GONE);
         } else {
-            /*if (!adapter.isProgressAdded()) {
-                refreshUi();
-            }*/
+            progressView.setVisibility(VISIBLE);
         }
     }
 
@@ -168,17 +169,19 @@ public abstract class BaseAttendeeRecyclerViewFragment<
     }
 
     private void showEmptyView() {
-        if (adapter != null) {
-            if (emptyView != null) {
-                if (adapter.getItemCount() == 0) {
-                    showParentOrSelf(false);
-                } else {
-                    showParentOrSelf(true);
+        if(null != viewModel.getStateLiveData() && viewModel.getStateLiveData().getValue().status != Status.LOADING){
+            if (adapter != null) {
+                if (emptyView != null) {
+                    if (adapter.getItemCount() == 0) {
+                        showParentOrSelf(false);
+                    } else {
+                        showParentOrSelf(true);
+                    }
                 }
-            }
-        } else {
-            if (emptyView != null) {
-                showParentOrSelf(false);
+            } else {
+                if (emptyView != null) {
+                    showParentOrSelf(false);
+                }
             }
         }
     }
