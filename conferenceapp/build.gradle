@@ -1,0 +1,157 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+def test = rootProject.ext.testingLibraries
+android {
+    compileSdkVersion cfg.compileVersion
+    defaultConfig {
+        applicationId cfg.package
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode cfg.version_code
+        versionName cfg.version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField "String", "BASE_URL", '"https://api.festivality.co/v2/"'
+        buildConfigField "String", "apiClientId",'"testing-account-cli"'
+        buildConfigField "String", "apiToken",'"$2y$10$C/quaRQUsrWa30hjQJuckOXbW9kIZ.W3G1TlLMYg6lr/XDUes7SM."'
+        multiDexEnabled true
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            // Uses new built-in shrinker http://tools.android.com/tech-docs/new-build-system/built-in-shrinker
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+    }
+    // Specifies two flavor dimensions.
+    flavorDimensions "qa", "prod"
+    // If you need to add more flavors, consider using flavor dimensions.
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+            dimension "qa"
+        }
+        prod {
+            dimension "prod"
+        }
+    }
+// Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name.equals('release')
+                && variant.getFlavors().get(0).name.equals('mock')) {
+            variant.setIgnore(true)
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // Android
+    implementation "com.android.support:support-v4:${libs.supportVersion}"
+    implementation "com.android.support:design:${libs.supportVersion}"
+    implementation "com.android.support:appcompat-v7:${libs.supportVersion}"
+    implementation "com.android.support:cardview-v7:${libs.supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${libs.supportVersion}"
+    implementation "com.android.support:palette-v7:${libs.supportVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${libs.constraintLayout}"
+
+    //okhttp
+    implementation "com.squareup.okhttp3:okhttp:${libs.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${libs.okhttp}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${libs.okhttp}"
+
+    // This Library is created by Bumptech
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-scalars:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${libs.retrofit_adapter}"
+
+    //reactivex
+    implementation "com.android.support:support-v4:${libs.supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${libs.supportVersion}"
+    implementation "com.android.support:design:${libs.supportVersion}"
+    implementation "io.reactivex.rxjava2:rxandroid:${libs.rxandroid}"
+    implementation "io.reactivex.rxjava2:rxjava:${libs.rxjava}"
+
+    //dagger
+    implementation "com.google.dagger:dagger:${libs.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${libs.dagger}"
+    implementation "com.google.dagger:dagger-android:${libs.google_dagger}"
+    implementation "com.google.dagger:dagger:${libs.google_dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${libs.google_dagger}"
+    implementation "com.google.dagger:dagger-android-support:${libs.google_dagger}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${libs.google_dagger}"
+
+    // For Lifecycle, ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:${libs.lifecycle_version}"
+    implementation "org.projectlombok:lombok:${libs.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${libs.lombok}"
+    compileOnly "javax.annotation:jsr250-api:1.0"
+    //realm
+    implementation 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
+
+    // leak canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${libs.leakCanaryVersion}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakCanaryVersion}"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakCanaryVersion}"
+
+    //RxPermissions
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+
+    //Test
+    implementation "com.android.support.test.espresso:espresso-idling-resource:${test.espresso}"
+    implementation "com.google.guava:guava:${libs.guavaVersion}"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:${test.junitVersion}"
+    androidTestImplementation "org.mockito:mockito-all:${test.mockitoVersion}"
+    androidTestImplementation "org.hamcrest:hamcrest-all:${test.hamcrestVersion}"
+    androidTestImplementation "com.android.support.test:runner:${test.espressoRunner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${test.espresso}"
+}
