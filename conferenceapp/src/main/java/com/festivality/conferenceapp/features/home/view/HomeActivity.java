@@ -4,12 +4,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.festivality.conferenceapp.R;
 import com.festivality.conferenceapp.app.base.views.acivity.BaseViewModelActivity;
 import com.festivality.conferenceapp.databinding.ActivityHomeBinding;
+import com.festivality.conferenceapp.features.attendees.view.fragments.MainAttendeeFragment;
 import com.festivality.conferenceapp.features.home.viewmodel.HomeViewModel;
 import com.festivality.conferenceapp.helper.ui.BottomNavigationViewHelper;
 
@@ -76,5 +79,18 @@ public class HomeActivity  extends BaseViewModelActivity<ActivityHomeBinding, Ho
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Fragment page = adapter.getRegisteredFragment(binding.pager.getCurrentItem());
+        if (binding.pager.getCurrentItem() == 0 && page != null) {
+            if(((MainAttendeeFragment)page).isDetail_shown()){
+                ((MainAttendeeFragment)page).showListFragment();
+            }else{
+                super.onBackPressed();
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.festivality.conferenceapp.R;
@@ -94,4 +95,9 @@ public class ProfileFragment extends BaseViewModelFragment<FragmentUserProfileBi
         mListener = null;
     }
 
+    @Override
+    public boolean onBackPressed() {
+        Log.i("Anil"," backPressed ProfileFragment ");
+        return super.onBackPressed();
+    }
 }

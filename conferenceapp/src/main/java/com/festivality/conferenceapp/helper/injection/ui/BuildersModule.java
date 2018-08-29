@@ -1,5 +1,7 @@
 package com.festivality.conferenceapp.helper.injection.ui;
 
+import com.festivality.conferenceapp.features.attendee.module.AttendeeDetailModule;
+import com.festivality.conferenceapp.features.attendee.view.AttendeeDetailFragment;
 import com.festivality.conferenceapp.features.attendees.module.AttendeeModule;
 import com.festivality.conferenceapp.features.attendees.view.fragments.AttendeesFragment;
 import com.festivality.conferenceapp.features.home.module.HomeActivityModule;
@@ -23,4 +25,6 @@ public abstract class BuildersModule {
     abstract AttendeesFragment attendeesFragment();
     @ContributesAndroidInjector(modules = ProfileModule.class)
     abstract ProfileFragment profileFragment();
+    @ContributesAndroidInjector(modules = AttendeeDetailModule.class)
+    abstract AttendeeDetailFragment attendeeDetailFragment();
 }

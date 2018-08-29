@@ -21,17 +21,12 @@ public class AuthenticationDao extends BaseRealmDaoImpl<Authentication> {
         super(Realm.getInstance(config), Authentication.class);
     }
 
-    @Nullable
-    @Override
-    protected String getDefaultSortField() {
-        return "mTitle";
+
+    public LiveRealmResults<Authentication> getReceivedAuthenticationById(String id) {
+        return findAllSorted(getAuthenticationQuery(id));
     }
 
-    public LiveRealmResults<Authentication> getReceivedDocumentsById(String id) {
-        return findAllSorted(getDocumentsQuery(id));
-    }
-
-    private RealmQuery<Authentication> getDocumentsQuery(String id) {
+    private RealmQuery<Authentication> getAuthenticationQuery(String id) {
         return query().contains("mId", id);
     }
 }

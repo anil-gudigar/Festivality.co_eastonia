@@ -47,5 +47,6 @@ public class StartupFragment extends Fragment {
 
     public void gotoHome() {
         startActivity(new Intent(getActivity(), HomeActivity.class));
+        getActivity().finish();
     }
 }

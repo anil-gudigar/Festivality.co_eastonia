@@ -24,7 +24,7 @@ public class AttendeeItemViewModel extends ItemModel<Attendee> {
 
     public String getImageUrl() {
         // The URL will usually come from a model (i.e Profile)
-        return mAttendee.getMedia().first().getFiles().getDefault_date();
+        return mAttendee.getMedia().first().getFiles().getVariations().getSmall();
     }
 
 
@@ -35,7 +35,7 @@ public class AttendeeItemViewModel extends ItemModel<Attendee> {
         GlideApp.with(view.getContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_location)
-                .transform(new RoundedCornersTransformation(radius, margin))
+                //.transform(new RoundedCornersTransformation(radius, margin))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(view);
     }

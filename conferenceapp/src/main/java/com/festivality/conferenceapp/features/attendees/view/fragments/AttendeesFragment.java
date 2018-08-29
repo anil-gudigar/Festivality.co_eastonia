@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.festivality.conferenceapp.app.base.views.fragment.BaseAttendeeRecyclerViewFragment;
@@ -13,6 +14,7 @@ import com.festivality.conferenceapp.features.attendees.view.adapters.AttendeeRe
 import com.festivality.conferenceapp.features.attendees.viewmodel.AttendeeViewModel;
 import com.festivality.conferenceapp.features.home.view.DefaultFragment;
 import com.festivality.conferenceapp.helper.BundleConstant;
+import com.festivality.conferenceapp.helper.ui.FragmentProvider;
 
 import io.reactivex.annotations.Nullable;
 
@@ -26,6 +28,7 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
     protected AppBarLayout appBar;
     @Nullable
     protected Toolbar toolbar;
+    private static FragmentProvider mFragmentProvider;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -37,7 +40,8 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static AttendeesFragment newInstance(String url,int columnCount) {
+    public static AttendeesFragment newInstance(String url, int columnCount, FragmentProvider fragmentProvider) {
+        mFragmentProvider = fragmentProvider;
         AttendeesFragment fragment = new AttendeesFragment();
         Bundle args = new Bundle();
         args.putString(BundleConstant.EXTRA, url);
@@ -52,6 +56,7 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        setRetainInstance(true);
     }
 
     @Override
@@ -62,6 +67,7 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel.setProvider(mFragmentProvider);
     }
 
     @Override
@@ -83,7 +89,7 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
 
     @Override
     public boolean onBackPressed() {
-        //Log.i("Anil"," NavigationStack -> "+viewModel.getNavigationStack().size());
+        Log.i("Anil"," backPressed :"+getChildFragmentManager().getBackStackEntryCount());
         return true;
     }
 

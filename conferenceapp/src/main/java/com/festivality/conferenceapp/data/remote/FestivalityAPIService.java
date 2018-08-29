@@ -27,4 +27,7 @@ public interface FestivalityAPIService {
     @GET
     Single<AttendeeDetail> loadUser(@Url String url, @Header(Constants.API_CONSTANTS.X_API_CLIENT) String xapiclient, @Header(Constants.API_CONSTANTS.X_HEADER_REQUEST) String xheaderrequest);
 
+    @Streaming
+    @GET
+    Single<Attendee> loadUserDetail(@Url String url, @Header(Constants.API_CONSTANTS.X_API_CLIENT) String xapiclient, @Header(Constants.API_CONSTANTS.X_HEADER_REQUEST) String xheaderrequest);
 }

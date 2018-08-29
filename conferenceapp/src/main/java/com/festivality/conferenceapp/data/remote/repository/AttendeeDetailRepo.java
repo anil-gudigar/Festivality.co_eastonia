@@ -50,9 +50,9 @@ public class AttendeeDetailRepo extends BaseRepo<AttendeeDetail, AttendeeDetailD
         this.targetURL = targetURL;
     }
 
-    public Flowable<Resource<AttendeeDetail>> getUser(String userlistURL) {
+    public Flowable<Resource<AttendeeDetail>> getUser(String userURL) {
         Log.i("Anil"," getUser call ");
-        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUser(userlistURL, "{\"apiClientId\":\"testing-account-cli\",\"apiToken\":\"$2y$10$C/quaRQUsrWa30hjQJuckOXbW9kIZ.W3G1TlLMYg6lr/XDUes7SM.\"}","{\"deviceId\":\"AC866D58-E8C2-4F54-9241-71D433FE06F0\"}"), user -> {
+        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUser(userURL, "{\"apiClientId\":\"testing-account-cli\",\"apiToken\":\"$2y$10$C/quaRQUsrWa30hjQJuckOXbW9kIZ.W3G1TlLMYg6lr/XDUes7SM.\"}","{\"deviceId\":\"AC866D58-E8C2-4F54-9241-71D433FE06F0\"}"), user -> {
             Log.i("Anil"," User to Save :"+ user.toString());
         });
     }

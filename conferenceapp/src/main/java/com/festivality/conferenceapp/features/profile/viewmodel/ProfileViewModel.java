@@ -25,7 +25,9 @@ import javax.inject.Inject;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 public class ProfileViewModel extends BaseViewModel {
 

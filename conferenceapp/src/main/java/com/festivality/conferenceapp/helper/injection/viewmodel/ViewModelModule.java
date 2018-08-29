@@ -3,6 +3,7 @@ package com.festivality.conferenceapp.helper.injection.viewmodel;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
+import com.festivality.conferenceapp.features.attendee.viewmodel.AttendeeDetailViewModel;
 import com.festivality.conferenceapp.features.attendees.module.AttendeeModule;
 import com.festivality.conferenceapp.features.attendees.viewmodel.AttendeeViewModel;
 import com.festivality.conferenceapp.features.home.viewmodel.HomeViewModel;
@@ -39,6 +40,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel.class)
     abstract ViewModel profiViewModel(ProfileViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AttendeeDetailViewModel.class)
+    abstract ViewModel attendeeDetailViewModel(AttendeeDetailViewModel viewModel);
 
 }
 

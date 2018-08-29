@@ -31,7 +31,7 @@ public class Attendee extends RealmObject {
     private String object;
     @SerializedName("type")
     @Expose
-    private  RealmList<Type> type;
+    private RealmList<Type> type;
     @SerializedName("date")
     @Expose
     private Date date;

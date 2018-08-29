@@ -261,16 +261,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="35dp"
-                    android:background="@drawable/buttonstyle"
-                    android:text="Follow Me"
-                    android:textColor="#fff" />
-
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
