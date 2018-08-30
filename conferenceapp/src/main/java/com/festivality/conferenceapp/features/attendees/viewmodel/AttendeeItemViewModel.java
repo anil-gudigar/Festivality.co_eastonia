@@ -35,7 +35,7 @@ public class AttendeeItemViewModel extends ItemModel<Attendee> {
         GlideApp.with(view.getContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_location)
-                //.transform(new RoundedCornersTransformation(radius, margin))
+                .transform(new RoundedCornersTransformation(radius, margin))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(view);
     }

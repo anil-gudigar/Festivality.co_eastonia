@@ -76,6 +76,8 @@ public class AttendeeDetailViewModel extends BaseViewModel {
         int margin = 10; // crop margin, set to 0 for corners with no crop
         GlideApp.with(view.getContext())
                 .load(imageUrl)
+                .placeholder(R.drawable.ic_location)
+                .transform(new RoundedCornersTransformation(radius, margin))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(view);
     }
