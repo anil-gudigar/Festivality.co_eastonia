@@ -11,8 +11,7 @@ import com.festivality.conferenceapp.app.base.views.fragment.BaseViewModelFragme
 import com.festivality.conferenceapp.data.model.Attendees.Attendee;
 import com.festivality.conferenceapp.databinding.FragmentAttendeeDetailBinding;
 import com.festivality.conferenceapp.features.attendee.viewmodel.AttendeeDetailViewModel;
-import com.festivality.conferenceapp.features.home.view.DefaultFragment;
-import com.festivality.conferenceapp.features.profile.view.ProfileFragment;
+import com.festivality.conferenceapp.features.home.view.fragment.DefaultFragment;
 
 public class AttendeeDetailFragment extends BaseViewModelFragment<FragmentAttendeeDetailBinding, AttendeeDetailViewModel> {
     // TODO: Rename parameter arguments, choose names that match

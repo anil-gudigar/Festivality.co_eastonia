@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.festivality.conferenceapp.R;
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
+import com.festivality.conferenceapp.features.home.view.activity.HomeActivity;
+import com.festivality.conferenceapp.features.intro.view.activity.IntroActivity;
 
 public class StartupFragment extends Fragment {
     /**
@@ -46,7 +47,6 @@ public class StartupFragment extends Fragment {
     }
 
     public void gotoHome() {
-        startActivity(new Intent(getActivity(), HomeActivity.class));
-        getActivity().finish();
+        ((IntroActivity)getActivity()).onStartUpAction(true);
     }
 }

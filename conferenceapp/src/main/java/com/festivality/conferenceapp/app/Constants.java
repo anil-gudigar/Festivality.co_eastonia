@@ -13,7 +13,9 @@ public class Constants {
         public static final String DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     }
     public static final String PREF_FILE_NAME = "APP_PREF_NAME";
-    public static final String PREF_USER = "PREF_USER";
-    public static final String PREF_USER_ID = "PREF_USER_ID";
-    public static final String PREF_USER_TOKEN = "PREF_USER_TOKEN";
+    public static final String PREF_NOTIFICATION_SKIP = "PREF_NOTIFICATION_SKIP";
+    public static final String PREF_NOTIFICATION_ALLOW = "PREF_NOTIFICATION_ALLOW";
+    public static final String PREF_LOCATION_SKIP = "PREF_LOCATION_SKIP";
+    public static final String PREF_LOCATION_ALLOW = "PREF_LOCATION_ALLOW";
+    public static final String PREF_APP_STARTED = "PREF_APP_STARTED";
 }

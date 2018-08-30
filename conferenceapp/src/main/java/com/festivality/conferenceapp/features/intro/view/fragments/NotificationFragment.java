@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.festivality.conferenceapp.R;
-import com.festivality.conferenceapp.features.intro.view.IntroActivity;
+import com.festivality.conferenceapp.features.intro.view.activity.IntroActivity;
 
 public class NotificationFragment extends Fragment {
     /**
@@ -51,7 +51,7 @@ public class NotificationFragment extends Fragment {
         rootView.findViewById(R.id.notification_skip_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((IntroActivity)getActivity()).movetoLocationPage(true);
+                ((IntroActivity)getActivity()).onNotificationPageAction(true,false);
             }
         });
         return rootView;

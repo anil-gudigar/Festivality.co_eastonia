@@ -1,9 +1,5 @@
 package com.festivality.conferenceapp.helper.ui;
 
-import android.content.Intent;
-
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
-
 
 /**
  * Created by ankumar on 11/14/2017.

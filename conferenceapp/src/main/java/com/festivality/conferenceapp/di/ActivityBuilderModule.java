@@ -1,6 +1,7 @@
 package com.festivality.conferenceapp.di;
 
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
+import com.festivality.conferenceapp.features.home.view.activity.HomeActivity;
+import com.festivality.conferenceapp.features.intro.view.activity.IntroActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -9,5 +10,6 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityBuilderModule {
     @ContributesAndroidInjector(modules = FragmentBuilderModule.class)
     abstract HomeActivity homeActivity();
-
+    @ContributesAndroidInjector(modules = FragmentBuilderModule.class)
+    abstract IntroActivity introActivity();
 }

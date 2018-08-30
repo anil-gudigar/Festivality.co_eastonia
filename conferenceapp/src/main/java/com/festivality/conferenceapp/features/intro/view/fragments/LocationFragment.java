@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.festivality.conferenceapp.R;
-import com.festivality.conferenceapp.features.intro.view.IntroActivity;
+import com.festivality.conferenceapp.features.intro.view.activity.IntroActivity;
 
 public class LocationFragment extends Fragment {
     /**
@@ -45,7 +45,7 @@ public class LocationFragment extends Fragment {
         rootView.findViewById(R.id.location_skip_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((IntroActivity)getActivity()).movetoStartUpPage(true);
+                ((IntroActivity)getActivity()).onLocationPageAction(true,false);
             }
         });
         return rootView;
@@ -56,9 +56,9 @@ public class LocationFragment extends Fragment {
                 .request(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION)
                 .subscribe(granted -> {
                     if (granted) { // Always true pre-M
-                        ((IntroActivity)getActivity()).movetoStartUpPage(false);
+                        ((IntroActivity)getActivity()).onLocationPageAction(false,true);
                     } else {
-                        ((IntroActivity)getActivity()).movetoStartUpPage(false);
+                        ((IntroActivity)getActivity()).onLocationPageAction(false,false);
                     }
                 });
     }

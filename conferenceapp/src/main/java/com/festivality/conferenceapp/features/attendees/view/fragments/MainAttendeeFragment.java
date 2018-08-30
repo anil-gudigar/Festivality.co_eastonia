@@ -12,11 +12,10 @@ import android.view.ViewGroup;
 
 import com.festivality.conferenceapp.R;
 import com.festivality.conferenceapp.features.attendee.view.AttendeeDetailFragment;
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
+import com.festivality.conferenceapp.features.home.view.activity.HomeActivity;
 import com.festivality.conferenceapp.helper.ui.FragmentProvider;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class MainAttendeeFragment extends Fragment implements FragmentProvider{

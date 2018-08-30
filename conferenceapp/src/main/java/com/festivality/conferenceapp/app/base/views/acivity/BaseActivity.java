@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.festivality.conferenceapp.R;
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
+import com.festivality.conferenceapp.features.home.view.activity.HomeActivity;
 import com.festivality.conferenceapp.helper.ui.AlertUtils;
 import com.squareup.leakcanary.RefWatcher;
 

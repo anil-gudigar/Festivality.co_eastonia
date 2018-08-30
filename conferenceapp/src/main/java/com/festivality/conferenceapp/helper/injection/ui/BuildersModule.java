@@ -5,9 +5,9 @@ import com.festivality.conferenceapp.features.attendee.view.AttendeeDetailFragme
 import com.festivality.conferenceapp.features.attendees.module.AttendeeModule;
 import com.festivality.conferenceapp.features.attendees.view.fragments.AttendeesFragment;
 import com.festivality.conferenceapp.features.home.module.HomeActivityModule;
-import com.festivality.conferenceapp.features.home.view.HomeActivity;
+import com.festivality.conferenceapp.features.home.view.activity.HomeActivity;
 import com.festivality.conferenceapp.features.intro.module.IntroActivityModule;
-import com.festivality.conferenceapp.features.intro.view.IntroActivity;
+import com.festivality.conferenceapp.features.intro.view.activity.IntroActivity;
 import com.festivality.conferenceapp.features.profile.module.ProfileModule;
 import com.festivality.conferenceapp.features.profile.view.ProfileFragment;
 

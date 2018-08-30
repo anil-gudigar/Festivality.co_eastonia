@@ -12,7 +12,6 @@ import com.festivality.conferenceapp.data.model.Attendees.Attendee;
 import com.festivality.conferenceapp.databinding.RefreshRecyclerViewBinding;
 import com.festivality.conferenceapp.features.attendees.view.adapters.AttendeeRecycleViewAdapter;
 import com.festivality.conferenceapp.features.attendees.viewmodel.AttendeeViewModel;
-import com.festivality.conferenceapp.features.home.view.DefaultFragment;
 import com.festivality.conferenceapp.helper.BundleConstant;
 import com.festivality.conferenceapp.helper.ui.FragmentProvider;
 
