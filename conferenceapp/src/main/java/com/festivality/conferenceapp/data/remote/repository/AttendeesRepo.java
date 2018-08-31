@@ -2,9 +2,12 @@ package com.festivality.conferenceapp.data.remote.repository;
 
 import android.util.Log;
 
+import com.festivality.conferenceapp.BuildConfig;
 import com.festivality.conferenceapp.app.base.dao.LiveRealmResults;
 import com.festivality.conferenceapp.data.local.daos.AttendeesDao;
+import com.festivality.conferenceapp.data.local.daos.DeviceIDDao;
 import com.festivality.conferenceapp.data.model.Attendees.Attendees;
+import com.festivality.conferenceapp.data.model.device.DeviceID;
 import com.festivality.conferenceapp.data.remote.FestivalityAPIService;
 import com.festivality.conferenceapp.data.source.Resource;
 import com.festivality.conferenceapp.helper.RestHelper;
@@ -23,10 +26,13 @@ public class AttendeesRepo extends BaseRepo<Attendees, AttendeesDao> {
 
     private String targetURL;
 
+    private DeviceIDDao mDeviceIDDao;
+
     @Inject
-    public AttendeesRepo(FestivalityAPIService festivalityAPIService, AttendeesDao attendeesDao) {
+    public AttendeesRepo(FestivalityAPIService festivalityAPIService, AttendeesDao attendeesDao,DeviceIDDao deviceIDDao) {
         super(attendeesDao);
         this.festivalityAPIService = festivalityAPIService;
+        this.mDeviceIDDao = deviceIDDao;
     }
 
     public FestivalityAPIService getFestivalityAPIService() {
@@ -51,7 +57,8 @@ public class AttendeesRepo extends BaseRepo<Attendees, AttendeesDao> {
 
     public Flowable<Resource<Attendees>> getUserList(String userlistURL) {
         Log.i("Anil"," getUserList call ");
-        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUserList(userlistURL, "{\"apiClientId\":\"testing-account-cli\",\"apiToken\":\"$2y$10$C/quaRQUsrWa30hjQJuckOXbW9kIZ.W3G1TlLMYg6lr/XDUes7SM.\"}","{\"deviceId\":\"AC866D58-E8C2-4F54-9241-71D433FE06F0\"}"), users -> {
+        DeviceID deviceID =mDeviceIDDao.getAll(true).getData().first();
+        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUserList(userlistURL, "{\"apiClientId\":\""+ BuildConfig.apiClientId+"\",\"apiToken\":\""+BuildConfig.apiToken+"\"}","{\"deviceId\":\""+ deviceID.getResponse().getDeviceId()+"\"}"), users -> {
            // Log.i("Anil","User List to Save :"+ users.getAttendees().toString());
         });
     }

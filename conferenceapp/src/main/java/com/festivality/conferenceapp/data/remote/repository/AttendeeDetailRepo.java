@@ -2,11 +2,14 @@ package com.festivality.conferenceapp.data.remote.repository;
 
 import android.util.Log;
 
+import com.festivality.conferenceapp.BuildConfig;
 import com.festivality.conferenceapp.app.base.dao.LiveRealmResults;
 import com.festivality.conferenceapp.data.local.daos.AttendeeDetailDao;
+import com.festivality.conferenceapp.data.local.daos.DeviceIDDao;
 import com.festivality.conferenceapp.data.model.AttendeeDetail.AttendeeDetail;
 import com.festivality.conferenceapp.data.model.Attendees.Attendee;
 import com.festivality.conferenceapp.data.model.Attendees.Attendees;
+import com.festivality.conferenceapp.data.model.device.DeviceID;
 import com.festivality.conferenceapp.data.remote.FestivalityAPIService;
 import com.festivality.conferenceapp.data.source.Resource;
 import com.festivality.conferenceapp.helper.RestHelper;
@@ -24,10 +27,13 @@ public class AttendeeDetailRepo extends BaseRepo<AttendeeDetail, AttendeeDetailD
 
     private String targetURL;
 
+    private DeviceIDDao mDeviceIDDao;
+
     @Inject
-    public AttendeeDetailRepo(FestivalityAPIService festivalityAPIService, AttendeeDetailDao attendeeDetailDao) {
+    public AttendeeDetailRepo(FestivalityAPIService festivalityAPIService, AttendeeDetailDao attendeeDetailDao, DeviceIDDao deviceIDDao) {
         super(attendeeDetailDao);
         this.festivalityAPIService = festivalityAPIService;
+        this.mDeviceIDDao = deviceIDDao;
     }
 
     public FestivalityAPIService getFestivalityAPIService() {
@@ -52,7 +58,8 @@ public class AttendeeDetailRepo extends BaseRepo<AttendeeDetail, AttendeeDetailD
 
     public Flowable<Resource<AttendeeDetail>> getUser(String userURL) {
         Log.i("Anil"," getUser call ");
-        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUser(userURL, "{\"apiClientId\":\"testing-account-cli\",\"apiToken\":\"$2y$10$C/quaRQUsrWa30hjQJuckOXbW9kIZ.W3G1TlLMYg6lr/XDUes7SM.\"}","{\"deviceId\":\"AC866D58-E8C2-4F54-9241-71D433FE06F0\"}"), user -> {
+        DeviceID deviceID =mDeviceIDDao.getAll(true).getData().first();
+        return RestHelper.createRemoteSourceMapper(festivalityAPIService.loadUser(userURL, "{\"apiClientId\":\""+ BuildConfig.apiClientId+"\",\"apiToken\":\""+BuildConfig.apiToken+"\"}","{\"deviceId\":\""+ deviceID.getResponse().getDeviceId()+"\"}"), user -> {
             Log.i("Anil"," User to Save :"+ user.toString());
         });
     }

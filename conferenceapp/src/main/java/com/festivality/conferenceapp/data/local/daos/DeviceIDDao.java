@@ -20,18 +20,4 @@ public class DeviceIDDao extends BaseRealmDaoImpl<DeviceID> {
     public DeviceIDDao(RealmConfiguration config) {
         super(Realm.getInstance(config), DeviceID.class);
     }
-
-    @Nullable
-    @Override
-    protected String getDefaultSortField() {
-        return "mTitle";
-    }
-
-    public LiveRealmResults<DeviceID> getReceivedDocumentsById(String id) {
-        return findAllSorted(getDocumentsQuery(id));
-    }
-
-    private RealmQuery<DeviceID> getDocumentsQuery(String id) {
-        return query().contains("mId", id);
-    }
 }
