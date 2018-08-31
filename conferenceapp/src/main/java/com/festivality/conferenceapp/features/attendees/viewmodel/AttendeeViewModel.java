@@ -93,11 +93,11 @@ public class AttendeeViewModel extends ListViewModel<Attendee, AttendeeRecycleVi
         if (!mAttendeeRepo.getDao().getAll(false).getData().isEmpty()) {
             if (!Query.isEmpty()) {
                 RealmResults<Attendee> filteredMembers = mAttendeeRepo.getDao().getAll(false).getData().where().contains("customFields.fullName", Query).notEqualTo("id",userID).findAll();
-                setData(filteredMembers, false);
+                setData(filteredMembers, true);
                 Log.i("Anil", "mAttendeeRepo filteredMembers Result Count " + filteredMembers.size());
             } else{
                 RealmResults<Attendee> allMembers = mAttendeeRepo.getDao().getAll(false).getData().where().notEqualTo("id", userID).findAll();;
-                setData(allMembers, false);
+                setData(allMembers, true);
                 Log.i("Anil", "mAttendeeRepo allMembers Result Count " + allMembers.size());
             }
         } else {
