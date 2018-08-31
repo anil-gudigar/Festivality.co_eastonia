@@ -1,5 +1,6 @@
 package com.festivality.conferenceapp.features.attendee.view;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
@@ -85,7 +86,6 @@ public class AttendeeDetailFragment extends BaseViewModelFragment<FragmentAttend
             }
         });
         viewModel.initUser(mUserID);
-
     }
 
     @Override

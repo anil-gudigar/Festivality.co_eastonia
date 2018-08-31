@@ -24,6 +24,7 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
     private View list_fragment_container;
     private View detail_fragment_container;
     private boolean isDetail_shown = false;
+    private Fragment atendeeDetailFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +61,8 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
 
     public void showListFragment(){
         detail_fragment_container.setVisibility(View.GONE);
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.remove(atendeeDetailFragment);
         list_fragment_container.setVisibility(View.VISIBLE);
         isDetail_shown = false;
     }
@@ -73,13 +76,13 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
     public void showFragment(int id,String extra) {
         try
         {
-            isDetail_shown = true;
-            list_fragment_container.setVisibility(View.GONE);
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            Fragment childFragment = AttendeeDetailFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), extra);;
-            transaction.replace(R.id.detail_fragment_container, childFragment);
+            atendeeDetailFragment = AttendeeDetailFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), extra);;
+            transaction.replace(R.id.detail_fragment_container, atendeeDetailFragment);
             transaction.commit();
             detail_fragment_container.setVisibility(View.VISIBLE);
+            list_fragment_container.setVisibility(View.GONE);
+            isDetail_shown = true;
         }
         catch (Exception e)
         {
