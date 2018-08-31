@@ -4,7 +4,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
 /**
- * Created by ankumar on 11/14/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  */
 
 public interface PlainConsumer<T> extends Consumer<T> {

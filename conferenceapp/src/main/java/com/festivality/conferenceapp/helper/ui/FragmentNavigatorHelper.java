@@ -1,7 +1,7 @@
 package com.festivality.conferenceapp.helper.ui;
 
 /**
- * Created by ankumar on 11/19/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  */
 
 public class FragmentNavigatorHelper extends NavigatorHelper {

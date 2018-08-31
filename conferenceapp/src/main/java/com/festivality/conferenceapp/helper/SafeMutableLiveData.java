@@ -3,7 +3,7 @@ package com.festivality.conferenceapp.helper;
 import android.arch.lifecycle.LiveData;
 
 /**
- * Created by ankumar on 11/14/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  * Thread-safe live data to resolve this issue: when perform  {@link LiveData#setValue(Object)}
  * not in main Thread. (almost case is in testing)
  */

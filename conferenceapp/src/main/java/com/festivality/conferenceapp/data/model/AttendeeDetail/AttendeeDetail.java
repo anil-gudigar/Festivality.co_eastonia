@@ -9,7 +9,7 @@ import io.realm.RealmObject;
 import lombok.Getter;
 import lombok.Setter;
 /**
- * Created by Anil Gudigar on 09/24/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  */
 @Getter
 @Setter

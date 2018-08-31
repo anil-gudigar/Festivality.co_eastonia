@@ -13,7 +13,7 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 
 /**
- * Created by Anil Gudigar on 09/24/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  */
 public class DeviceIDDao extends BaseRealmDaoImpl<DeviceID> {
     @Inject

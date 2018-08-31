@@ -3,7 +3,7 @@ package com.festivality.conferenceapp.helper.rx.funcations;
 import io.reactivex.functions.Function;
 
 /**
- * Created by ankumar on 11/15/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  */
 
 public interface PlainFunction<T, R> extends Function<T, R> {

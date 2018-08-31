@@ -2,7 +2,7 @@ package com.festivality.conferenceapp.helper.ui;
 
 
 /**
- * Created by ankumar on 11/14/2017.
+ * Created by Anil Gudigar on 09/23/2018.
  * Util class for navigating common page in application
  */
 
