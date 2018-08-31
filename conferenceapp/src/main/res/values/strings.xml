@@ -25,4 +25,6 @@
     <string name="add_to_group">Add to group</string>
     <string name="show_all_comments">Show all comments</string>
     <string name="follow_me">Follow Me</string>
+    <string name="search_hint">enter name</string>
+    <string name="search">Search</string>
 </resources>

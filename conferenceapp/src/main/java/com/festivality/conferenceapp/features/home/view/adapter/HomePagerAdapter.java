@@ -34,7 +34,7 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return MainAttendeeFragment.newInstance();
             case 1:
-                return ProfileFragment.newInstance(((HomeActivity)context).getViewModel().getUSER_LIST_URL(), "44779");
+                return ProfileFragment.newInstance(((HomeActivity)context).getViewModel().getUSER_LIST_URL());
                 default:
                 return DefaultFragment.newInstance("", "");
         }

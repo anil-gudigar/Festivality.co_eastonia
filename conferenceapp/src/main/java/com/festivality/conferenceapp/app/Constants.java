@@ -13,6 +13,7 @@ public class Constants {
         public static final String DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     }
     public static final String PREF_FILE_NAME = "APP_PREF_NAME";
+    public static final String PREF_USER_ID = "USER_ID";
     public static final String PREF_NOTIFICATION_SKIP = "PREF_NOTIFICATION_SKIP";
     public static final String PREF_NOTIFICATION_ALLOW = "PREF_NOTIFICATION_ALLOW";
     public static final String PREF_LOCATION_SKIP = "PREF_LOCATION_SKIP";

@@ -110,4 +110,8 @@ public class AttendeesFragment extends BaseAttendeeRecyclerViewFragment<RefreshR
         void onListActionFragmentInteraction(Attendee item);
     }
 
+    public void searchByName(String query){
+        viewModel.searchByName(query);
+    }
+
 }

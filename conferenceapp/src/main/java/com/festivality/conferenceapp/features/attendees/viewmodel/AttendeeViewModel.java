@@ -7,17 +7,21 @@ import android.util.Log;
 import android.view.View;
 
 import com.festivality.conferenceapp.R;
+import com.festivality.conferenceapp.app.Constants;
 import com.festivality.conferenceapp.app.base.viewmodel.ListViewModel;
 import com.festivality.conferenceapp.data.model.Attendees.Attendee;
+import com.festivality.conferenceapp.data.remote.repository.AttendeeRepo;
 import com.festivality.conferenceapp.data.remote.repository.AttendeesRepo;
 import com.festivality.conferenceapp.features.attendees.view.adapters.AttendeeRecycleViewAdapter;
 import com.festivality.conferenceapp.helper.BundleConstant;
+import com.festivality.conferenceapp.helper.CustomSharedPreferences;
 import com.festivality.conferenceapp.helper.ui.FragmentProvider;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import io.realm.RealmResults;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,11 +30,16 @@ import lombok.Setter;
 public class AttendeeViewModel extends ListViewModel<Attendee, AttendeeRecycleViewAdapter> {
 
     private final AttendeesRepo mAttendeesRepo;
+    private final AttendeeRepo mAttendeeRepo;
+    private final CustomSharedPreferences mCustomSharedPreferences;
     private String user_list_url;
     private FragmentProvider provider;
+
     @Inject
-    public AttendeeViewModel(AttendeesRepo attendeesRepo) {
+    public AttendeeViewModel(AttendeesRepo attendeesRepo, AttendeeRepo attendeeRepo,@NonNull CustomSharedPreferences sharedPreferences) {
         mAttendeesRepo = attendeesRepo;
+        mAttendeeRepo = attendeeRepo;
+        mCustomSharedPreferences = sharedPreferences;
         setTitle(getString(R.string.title_home));
     }
 
@@ -73,10 +82,27 @@ public class AttendeeViewModel extends ListViewModel<Attendee, AttendeeRecycleVi
 
     }
 
+
     @Override
     public void onItemClick(View v, Attendee item) {
-        provider.showFragment(1,item.getId());
+        provider.showFragment(1, item.getId());
     }
 
+    public void searchByName(String Query) {
+        String userID = mCustomSharedPreferences.getPreferences(Constants.PREF_USER_ID,"");
+        if (!mAttendeeRepo.getDao().getAll(false).getData().isEmpty()) {
+            if (!Query.isEmpty()) {
+                RealmResults<Attendee> filteredMembers = mAttendeeRepo.getDao().getAll(false).getData().where().contains("customFields.fullName", Query).notEqualTo("id",userID).findAll();
+                setData(filteredMembers, false);
+                Log.i("Anil", "mAttendeeRepo filteredMembers Result Count " + filteredMembers.size());
+            } else{
+                RealmResults<Attendee> allMembers = mAttendeeRepo.getDao().getAll(false).getData().where().notEqualTo("id", userID).findAll();;
+                setData(allMembers, false);
+                Log.i("Anil", "mAttendeeRepo allMembers Result Count " + allMembers.size());
+            }
+        } else {
+            Log.i("Anil", "Empty attendees");
+        }
+    }
 
 }

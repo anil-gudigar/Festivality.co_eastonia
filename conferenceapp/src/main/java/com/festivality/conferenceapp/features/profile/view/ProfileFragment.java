@@ -22,7 +22,6 @@ public class ProfileFragment extends BaseViewModelFragment<FragmentUserProfileBi
     private DefaultFragment.OnFragmentInteractionListener mListener;
     // TODO: Rename and change types of parameters
     private String mUrl;
-    private String mUserID;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -32,15 +31,13 @@ public class ProfileFragment extends BaseViewModelFragment<FragmentUserProfileBi
      * this fragment using the provided parameters.
      *
      * @param url Parameter 1.
-     * @param userid Parameter 2.
      * @return A new instance of fragment SettingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String url, String userid) {
+    public static ProfileFragment newInstance(String url) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(URL, url);
-        args.putString(USER_ID, userid);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +47,6 @@ public class ProfileFragment extends BaseViewModelFragment<FragmentUserProfileBi
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mUrl = getArguments().getString(URL);
-            mUserID = getArguments().getString(USER_ID);
         }
     }
 
@@ -84,7 +80,7 @@ public class ProfileFragment extends BaseViewModelFragment<FragmentUserProfileBi
                 binding.setProfileItem(viewModel);
             }
         });
-        viewModel.initUser(mUserID);
+        viewModel.initUser();
 
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.festivality.conferenceapp.app.Constants;
 import com.festivality.conferenceapp.app.base.viewmodel.BaseViewModel;
 import com.festivality.conferenceapp.helper.CustomSharedPreferences;
 
@@ -27,7 +28,7 @@ public class IntroViewModel extends BaseViewModel {
 
     @Override
     protected void onFirsTimeUiCreate(@Nullable Bundle bundle) {
-
+        mSharedPreferences.setPreferences(Constants.PREF_USER_ID,"44779");
     }
 
 

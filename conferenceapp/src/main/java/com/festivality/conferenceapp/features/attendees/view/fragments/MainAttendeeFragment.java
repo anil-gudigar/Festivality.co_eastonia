@@ -1,14 +1,22 @@
 package com.festivality.conferenceapp.features.attendees.view.fragments;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.festivality.conferenceapp.R;
 import com.festivality.conferenceapp.features.attendee.view.AttendeeDetailFragment;
@@ -18,18 +26,22 @@ import com.festivality.conferenceapp.helper.ui.FragmentProvider;
 import lombok.Getter;
 
 @Getter
-public class MainAttendeeFragment extends Fragment implements FragmentProvider{
+public class MainAttendeeFragment extends Fragment implements FragmentProvider,SearchView.OnQueryTextListener{
     private TabLayout tabs;
     private Toolbar toolbar;
     private View list_fragment_container;
     private View detail_fragment_container;
     private boolean isDetail_shown = false;
     private Fragment atendeeDetailFragment;
+    private Fragment attendeesFragment;
+    private MenuItem searchItem;
+    private SearchView searchView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -51,12 +63,49 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
         MainAttendeeFragment fragment = new MainAttendeeFragment();
         return fragment;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Fragment childFragment = AttendeesFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), 1,this);;
+        attendeesFragment = AttendeesFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), 1,this);;
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.list_fragment_container, childFragment);
+        transaction.replace(R.id.list_fragment_container, attendeesFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.dashboard, menu);
+
+        searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            EditText editText = ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text));
+            editText.setHintTextColor(getResources().getColor(android.R.color.white));
+            editText.setTextColor(getResources().getColor(android.R.color.white));
+            searchView.setOnQueryTextListener(this);
+            searchView.setIconified(false);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // Not implemented here
+                return false;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void showListFragment(){
@@ -65,6 +114,7 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
         transaction.remove(atendeeDetailFragment);
         list_fragment_container.setVisibility(View.VISIBLE);
         isDetail_shown = false;
+        searchItem.setVisible(true);
     }
 
     @Override
@@ -76,6 +126,7 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
     public void showFragment(int id,String extra) {
         try
         {
+            searchItem.setVisible(false);
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             atendeeDetailFragment = AttendeeDetailFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), extra);;
             transaction.replace(R.id.detail_fragment_container, atendeeDetailFragment);
@@ -90,4 +141,18 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider{
         }
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.i("Anil","Search Query : "+query);
+        ((AttendeesFragment)attendeesFragment).searchByName(query);
+        searchView.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Log.i("Anil","Search QueryTextChange : "+newText);
+        ((AttendeesFragment)attendeesFragment).searchByName(newText);
+        return true;
+    }
 }

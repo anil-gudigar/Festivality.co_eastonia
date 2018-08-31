@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
@@ -12,11 +13,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.festivality.conferenceapp.R;
+import com.festivality.conferenceapp.app.Constants;
 import com.festivality.conferenceapp.app.base.viewmodel.BaseViewModel;
 import com.festivality.conferenceapp.data.model.AttendeeDetail.AttendeeDetail;
 import com.festivality.conferenceapp.data.model.Attendees.Attendee;
 import com.festivality.conferenceapp.data.remote.repository.AttendeeDetailRepo;
 import com.festivality.conferenceapp.features.profile.view.ProfileFragment;
+import com.festivality.conferenceapp.helper.CustomSharedPreferences;
 import com.festivality.conferenceapp.helper.ui.GlideApp;
 
 import java.util.ArrayList;
@@ -36,19 +39,21 @@ public class ProfileViewModel extends BaseViewModel {
     private String user_url;
     private MutableLiveData<AttendeeDetail> mAttendeeDetail;
     private MutableLiveData<Attendee> mAttendee;
+    private CustomSharedPreferences mCustomSharedPreferences;
 
 
     @Inject
-    ProfileViewModel(AttendeeDetailRepo attendeeDetailRepo) {
+    ProfileViewModel(AttendeeDetailRepo attendeeDetailRepo,@NonNull CustomSharedPreferences sharedPreferences) {
         this.mAttendeeDetailRepo = attendeeDetailRepo;
         mAttendeeDetail = new MutableLiveData<>();
         mAttendee = new MutableLiveData<>();
+        mCustomSharedPreferences = sharedPreferences;
     }
 
-    public void initUser(String userLogin) {
-        Log.i("Anil"," initUser :"+user_url);
+    public void initUser() {
+        Log.i("Anil","ProfileViewModel initUser :"+user_url);
         if (mAttendeeDetailRepo.getDao().getAll(true).getData().isEmpty()) {
-            this.user = userLogin;
+            this.user = mCustomSharedPreferences.getPreferences(Constants.PREF_USER_ID,"");
             new Handler(Looper.myLooper()).postDelayed(() -> {
                 execute(true, mAttendeeDetailRepo.getUser(user_url+"/"+user), user -> {
                     Log.i("Anil"," user Details:"+user.toString());
@@ -69,7 +74,7 @@ public class ProfileViewModel extends BaseViewModel {
     protected void onFirsTimeUiCreate(@Nullable Bundle bundle) {
         if (null != bundle.getString(ProfileFragment.URL)) {
             user_url = bundle.getString(ProfileFragment.URL);
-            user = bundle.getString(ProfileFragment.USER_ID);
+            user = mCustomSharedPreferences.getPreferences(Constants.PREF_USER_ID,"");
         }
     }
 
