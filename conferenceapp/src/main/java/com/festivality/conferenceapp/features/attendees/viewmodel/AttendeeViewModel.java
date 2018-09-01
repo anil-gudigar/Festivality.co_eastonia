@@ -105,4 +105,15 @@ public class AttendeeViewModel extends ListViewModel<Attendee, AttendeeRecycleVi
         }
     }
 
+    public void getFeatured() {
+        String userID = mCustomSharedPreferences.getPreferences(Constants.PREF_USER_ID,"");
+        if (!mAttendeeRepo.getDao().getAll(false).getData().isEmpty()) {
+                RealmResults<Attendee> filteredMembers = mAttendeeRepo.getDao().getAll(false).getData().where().contains("isFeatured", "1").notEqualTo("id",userID).findAll();
+                setData(filteredMembers, true);
+                Log.i("Anil", "mAttendeeRepo getFeatured Result Count " + filteredMembers.size());
+        } else {
+            Log.i("Anil", "Empty attendees");
+        }
+    }
+
 }
