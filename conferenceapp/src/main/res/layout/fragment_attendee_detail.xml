@@ -100,7 +100,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:visibility="visible"
-                    android:paddingBottom="42dp"
                     android:weightSum="1">
 
                     <RelativeLayout
@@ -131,14 +130,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Photos"
+                                        android:text="@string/likes"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
-                                        android:text="125"
+                                        android:text="@{attendeeDetailItem.MAttendee.likes}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
@@ -155,14 +154,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Followers"
+                                        android:text="@string/share"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
-                                        android:text="1205"
+                                        android:text="@{attendeeDetailItem.MAttendee.share}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
@@ -179,14 +178,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Following"
+                                        android:text="@string/slug"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
-                                        android:text="360"
+                                        android:text="@{attendeeDetailItem.MAttendee.slug}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
@@ -200,7 +199,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="45dp"
                         android:layout_weight="0.70"
                         android:orientation="vertical"
                         android:paddingLeft="20dp"
@@ -246,7 +244,70 @@
                                 android:text="@{attendeeDetailItem.MAttendee.customFields.phone}"
                                 android:textStyle="bold" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="25dp">
 
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_account_balance_black_24dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:text="@{attendeeDetailItem.MAttendee.customFields.company}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="25dp">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_work_black_24dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:text="@{attendeeDetailItem.MAttendee.customFields.position}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="25dp">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_place_black_24dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:text="@{attendeeDetailItem.MAttendee.customFields.city}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -261,7 +322,6 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
-
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:paddingLeft="20dp"
@@ -295,7 +355,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="35dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/buttonstyle"
                         android:text="@string/follow_me"
                         android:textColor="#fff" />

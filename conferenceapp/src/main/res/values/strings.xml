@@ -29,4 +29,7 @@
     <string name="search">Search</string>
     <string name="filter">filter</string>
     <string name="sort">Sort</string>
+    <string name="likes">Likes</string>
+    <string name="share">Share</string>
+    <string name="slug">Slug</string>
 </resources>
