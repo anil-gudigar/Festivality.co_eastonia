@@ -27,4 +27,6 @@
     <string name="follow_me">Follow Me</string>
     <string name="search_hint">enter name</string>
     <string name="search">Search</string>
+    <string name="filter">filter</string>
+    <string name="sort">Sort</string>
 </resources>

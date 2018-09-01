@@ -52,6 +52,7 @@ public abstract class BaseRecyclerViewModelAdapter<T, VIEW_MODEL_T extends ItemM
     public void setData(@Nullable List<T> newData) {
         if (this.data != newData) {
             this.data = newData;
+            notifyDataSetChanged();
         }
         if(null != data){
             notifyItemRangeChanged(0, data.size());

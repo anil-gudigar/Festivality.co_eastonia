@@ -169,7 +169,7 @@ public abstract class BaseAttendeeRecyclerViewFragment<
     }
 
     private void showEmptyView() {
-        if(null != viewModel.getStateLiveData() && viewModel.getStateLiveData().getValue().status != Status.LOADING){
+        if(null != viewModel.getStateLiveData() && null != viewModel.getStateLiveData().getValue() && viewModel.getStateLiveData().getValue().status != Status.LOADING){
             if (adapter != null) {
                 if (emptyView != null) {
                     if (adapter.getItemCount() == 0) {
