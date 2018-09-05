@@ -35,6 +35,8 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider,S
     private Fragment atendeeDetailFragment;
     private Fragment attendeesFragment;
     private MenuItem searchItem;
+    private MenuItem sortItem;
+    private MenuItem filterItem;
     private SearchView searchView;
 
     @Override
@@ -80,6 +82,8 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider,S
         menuInflater.inflate(R.menu.dashboard, menu);
 
         searchItem = menu.findItem(R.id.action_search);
+        sortItem = menu.findItem(R.id.action_sort);
+        filterItem = menu.findItem(R.id.action_filter);
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 
@@ -115,6 +119,8 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider,S
         list_fragment_container.setVisibility(View.VISIBLE);
         isDetail_shown = false;
         searchItem.setVisible(true);
+        sortItem.setVisible(true);
+        filterItem.setVisible(true);
     }
 
     @Override
@@ -127,6 +133,8 @@ public class MainAttendeeFragment extends Fragment implements FragmentProvider,S
         try
         {
             searchItem.setVisible(false);
+            sortItem.setVisible(false);
+            filterItem.setVisible(false);
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             atendeeDetailFragment = AttendeeDetailFragment.newInstance(((HomeActivity)getActivity()).getViewModel().getUSER_LIST_URL(), extra);;
             transaction.replace(R.id.detail_fragment_container, atendeeDetailFragment);
