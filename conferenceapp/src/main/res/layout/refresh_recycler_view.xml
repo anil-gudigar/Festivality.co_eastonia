@@ -73,7 +73,8 @@
                     android:layout_height="match_parent"
                     app:layoutManager="LinearLayoutManager" />
 
-                <com.festivality.conferenceapp.app.base.views.widget.RecyclerViewFastScroller
+                <FrameLayout
+                    class ="com.festivality.conferenceapp.app.base.views.widget.RecyclerViewFastScroller"
                     android:id="@+id/fastScroller"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
