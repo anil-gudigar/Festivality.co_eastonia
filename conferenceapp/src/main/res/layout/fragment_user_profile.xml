@@ -52,6 +52,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:text="@{profileItem.MAttendee.customFields.fullName}"
+                        app:autoSizeTextType="uniform"
                         android:textColor="#fff"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -130,6 +131,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@string/likes"
                                         android:textSize="20sp" />
 
@@ -137,6 +139,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{profileItem.MAttendee.likes}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -155,12 +158,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/share"
+                                        app:autoSizeTextType="uniform"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{profileItem.MAttendee.share}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -179,12 +184,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/slug"
+                                        app:autoSizeTextType="uniform"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{profileItem.MAttendee.slug}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -220,6 +227,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:text="@{profileItem.MAttendee.customFields.publicEmail}"
                                 android:textStyle="bold" />
@@ -241,6 +249,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:text="@{profileItem.MAttendee.customFields.phone}"
                                 android:textStyle="bold" />
@@ -262,6 +271,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:text="@{profileItem.MAttendee.customFields.company}"
                                 android:textStyle="bold" />
@@ -284,6 +294,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:text="@{profileItem.MAttendee.customFields.position}"
                                 android:textStyle="bold" />
@@ -306,6 +317,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:text="@{profileItem.MAttendee.customFields.city}"
                                 android:textStyle="bold" />
@@ -322,6 +334,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -337,6 +350,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -351,20 +365,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:paddingLeft="20dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="25dp"
-                            android:orientation="horizontal"
-                            android:paddingLeft="25dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -393,6 +394,22 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                android:paddingLeft="20dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="25dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
                                 android:paddingLeft="20dp"
                                 android:textStyle="bold" />
                         </LinearLayout>

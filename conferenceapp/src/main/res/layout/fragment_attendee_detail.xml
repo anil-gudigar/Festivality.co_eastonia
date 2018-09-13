@@ -51,6 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
+                        app:autoSizeTextType="uniform"
                         android:text="@{attendeeDetailItem.MAttendee.customFields.fullName}"
                         android:textColor="#fff"
                         android:textSize="21sp"
@@ -131,12 +132,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/likes"
+                                        app:autoSizeTextType="uniform"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{attendeeDetailItem.MAttendee.likes}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -154,6 +157,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@string/share"
                                         android:textSize="20sp" />
 
@@ -161,6 +165,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{attendeeDetailItem.MAttendee.share}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -179,12 +184,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/slug"
+                                        app:autoSizeTextType="uniform"
                                         android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingTop="10dp"
+                                        app:autoSizeTextType="uniform"
                                         android:text="@{attendeeDetailItem.MAttendee.slug}"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="20sp"
@@ -220,6 +227,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:paddingLeft="20dp"
+                                app:autoSizeTextType="uniform"
                                 android:text="@{attendeeDetailItem.MAttendee.customFields.publicEmail}"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -261,6 +269,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:paddingLeft="20dp"
+                                app:autoSizeTextType="uniform"
                                 android:text="@{attendeeDetailItem.MAttendee.customFields.company}"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -325,6 +334,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:paddingLeft="20dp"
+                                app:autoSizeTextType="uniform"
                                 android:text="@string/add_to_group"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -346,6 +356,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:paddingLeft="20dp"
+                                app:autoSizeTextType="uniform"
                                 android:text="@string/show_all_comments"
                                 android:textStyle="bold" />
                         </LinearLayout>
