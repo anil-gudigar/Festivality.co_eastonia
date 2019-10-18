@@ -10,6 +10,6 @@ Setup :
 2) used lombok annotation proccesor which will help to reduce lots of boilerplate.
 3) guide to setup lombok plugin in android studio: https://projectlombok.org/setup/android
 4) we need enable annotation processor in android studio to build the code.
-	Settings > Build, Execution, Deployment > Compiler > Annotation Processors. Tick 'Enable annotation processing'.
+Settings > Build, Execution, Deployment > Compiler > Annotation Processors. Tick 'Enable annotation processing'.
 	
-	![](https://github.com/anil-gudigar/Festivality.co_eastonia/blob/master/ezgif-1-78e1123de8_1.gif)
+![](https://github.com/anil-gudigar/Festivality.co_eastonia/blob/master/ezgif.com-resize.gif)
